@@ -1,5 +1,6 @@
 import React from "react";
-const Loading = ({ size = 80, color = "#4fa94d", text = "Loading", textColor = "green", textStyle = {} }) => {
+
+const LoadingDots = ({ size = 15, color = "#4fa94d", text = "Loading", textColor = "green", textStyle = {} }) => {
   return (
     <div
       style={{
@@ -9,10 +10,41 @@ const Loading = ({ size = 80, color = "#4fa94d", text = "Loading", textColor = "
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        gap: "10px",
+        gap: "20px",
       }}
     >
-      <div className="spinner" style={{ width: size, height: size, border: `5px solid ${color}`, borderTop: `5px solid transparent`, borderRadius: "50%", animation: "spin 1s linear infinite" }}></div>
+      <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+        <div
+          className="dot"
+          style={{
+            width: size,
+            height: size,
+            backgroundColor: color,
+            borderRadius: "50%",
+            animation: "bounce 0.6s infinite alternate",
+          }}
+        ></div>
+        <div
+          className="dot"
+          style={{
+            width: size,
+            height: size,
+            backgroundColor: color,
+            borderRadius: "50%",
+            animation: "bounce 0.6s infinite alternate 0.2s",
+          }}
+        ></div>
+        <div
+          className="dot"
+          style={{
+            width: size,
+            height: size,
+            backgroundColor: color,
+            borderRadius: "50%",
+            animation: "bounce 0.6s infinite alternate 0.4s",
+          }}
+        ></div>
+      </div>
       <span
         style={{
           fontSize: "30px",
@@ -25,12 +57,13 @@ const Loading = ({ size = 80, color = "#4fa94d", text = "Loading", textColor = "
         {text}
       </span>
       <style>{`
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+        @keyframes bounce {
+          from { transform: translateY(0); }
+          to { transform: translateY(-20px); }
         }
       `}</style>
     </div>
   );
 };
-export default Loading;
+
+export default LoadingDots;
